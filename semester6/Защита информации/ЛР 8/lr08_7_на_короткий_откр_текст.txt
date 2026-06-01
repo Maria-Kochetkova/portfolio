@@ -1,0 +1,34 @@
+> # Атака на короткий открытый текст
+> # Выполнила Кочеткова М.П.
+> with(RandomTools):
+> with(numtheory):
+>
+> x1 := Generate(integer(range = 1 .. 10^4)):
+> y1 := Generate(integer(range = 1 .. 10^4)):
+> M := x1*y1:
+>
+> e := nextprime(Generate(integer(range = 1 .. 10^3)));
+>
+> p := nextprime(Generate(integer(range = 1 .. 10^5))):
+> q := nextprime(Generate(integer(range = 1 .. 10^5))):
+> n := p * q;
+>
+> # Шифрекст
+> c := M &^ e mod n;
+>
+> for x2 from 1 to 10^5 do
+> 	for y2 from 1 to 10^9 do
+> 		U := (c * x2 ^ (-e)) mod n;
+> 		V := y2 &^ e mod n;
+> 		if U = V then
+> 			m := x2 * y2;
+> 			break;
+> 		end if;
+> 	end do;
+>
+> 	if assigned(m) then
+> 		break;
+> 	end if;
+> end do;
+>  
+> is(M = m);

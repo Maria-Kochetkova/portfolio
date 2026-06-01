@@ -1,0 +1,36 @@
+> # Атака с помощью разложения на множители методом Ферма
+> # Выполнила Кочеткова М.П.
+> with(numtheory):
+> with(RandomTools):
+> 
+> # Неизвестное число p
+> p:= nextprime(Generate(integer(range = 1 ..10^10))):
+> # Неизвестное число q, близкое к p
+> q:= nextprime(p):
+>
+> n := p*q; # ив
+> found := false;
+>
+> k := 1 + floor(sqrt(n));
+> y := k^2 - n;
+> d1 := 1;
+> while not found do 
+> 	if (floor(y^(1/2))= y^(1/2)) then
+> 		x := (n + y)^(1/2); 
+> 		y := y^(1/2); 
+> 		p_found := x-y;
+> 		q_found := x+y;
+> 		found := true;
+> 	elif floor(y^(0.5)) >= n/2 then 
+> 		print("Множители не найдены");
+> 		s := true; 
+> 	else 
+> 		y := y + 2 * k + d1; 
+> 		d1 := d1 + 2; 
+> 	end if;
+> end do;
+> 
+> # Проверка
+> is(n = (x + y) * (x - y));
+> is(p = x - y);
+> is(q = x + y);

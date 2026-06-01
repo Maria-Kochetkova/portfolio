@@ -1,0 +1,66 @@
+> with(numtheory):
+> with(RandomTools):
+> #
+> pA := nextprime(Generate(integer(range = 3.. 3^15))); 
+> qA := nextprime(Generate(integer(range = 3.. 3^15)));
+> #
+> nA := pA*qA; 
+> PA := phi(nA);
+> #
+> pB := nextprime(Generate(integer(range = 3.. 3^15))); 
+> qB := nextprime(Generate(integer(range = 3.. 3^15)));
+> #
+> nB := pB*qB; 
+> PB := phi(nB);
+> #
+> a1 := nextprime(Generate(integer(range = 3.. 3^15)));
+> while igcd(a1, PA) <> 1 do
+> 	a1 := nextprime(Generate(integer(range = 3.. 3^15)))
+> end do;
+> a2 := nextprime(Generate(integer(range = 3.. 3^15)));
+> while igcd(a2, PA) <> 1 do
+> 	a2 := nextprime(Generate(integer(range = 3.. 3^15)))
+> end do;
+> a3 := nextprime(Generate(integer(range = 3.. 3^15)));
+> while igcd(a3, PA) <> 1 do
+> 	a3 := nextprime(Generate(integer(range = 3.. 3^15)))
+> end do;
+> #
+> alpha1 := a1 &^ (phi(PA) - 1) mod PA;
+> alpha2 := a2 &^ (phi(PA) - 1) mod PA;
+> alpha3 := a3 &^ (phi(PA) - 1) mod PA;
+> #
+> b1 := nextprime(Generate(integer(range = 3.. 3^15)));
+> while igcd(b1, PB) <> 1 do
+> 	b1 := nextprime(Generate(integer(range = 3.. 3^15)))
+> end do;
+> b2 := nextprime(Generate(integer(range = 3.. 3^15)));
+> while igcd(b2, PB) <> 1 do
+> 	b2 := nextprime(Generate(integer(range = 3.. 3^15)))
+> end do;
+> b3 := nextprime(Generate(integer(range = 3.. 3^15)));
+> while igcd(b3, PB) <> 1 do
+> 	b3 := nextprime(Generate(integer(range = 3.. 3^15)))
+> end do;
+> #
+> beta1 := b1 &^ (phi(PB) - 1) mod PB;
+> beta2 := b2 &^ (phi(PB) - 1) mod PB;
+> beta3 := b3 &^ (phi(PB) - 1) mod PB;
+> #
+> s := nextprime(Generate(integer(range = 3.. 3^15)));
+> #
+> g := s &^ beta1 mod nB;
+> s1 := g &^ b1 mod nB;
+> s1 - s;
+> #
+> #
+> m := nextprime(Generate(integer(range = 3.. 3^15)));
+> #
+> m1 := m &^ b2 mod nB;
+> m2 := m1 &^ alpha3 mod nA;
+> m3 := m2 &^ b3 mod nB;
+> #
+> m4 := m3 &^ beta3 mod nB;
+> m5 := m4 &^ a3 mod nA;
+> m6 := m5 &^ beta2 mod nB;
+> m6 - m;

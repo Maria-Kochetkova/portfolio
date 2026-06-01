@@ -1,0 +1,37 @@
+> with(numtheory):
+> with(RandomTools):
+> 
+> p := nextprime(Generate(integer(range = 3.. 3^15)));
+> q := nextprime(Generate(integer(range = 3.. 3^15)));
+>     
+> while q = p do
+> 	q := nextprime(Generate(integer(range = 3.. 3^15)));
+> end do;
+> 
+> n := p * q;
+> P := phi(n);
+>     
+> e := nextprime(Generate(integer(range = 3.. 3^15)));
+> while igcd(e, P) <> 1 do
+> 	e := nextprime(Generate(integer(range = 3.. 3^15)))
+> end do;
+> 
+> d1 := e &^ (phi(P)-1) mod P;
+> 
+> m := Generate(integer(range = 3.. n));
+> 
+> r := Generate(integer(range = 3.. 3^15));
+> while igcd(r, n) <> 1 do
+> 	r := Generate(integer(range = 3.. 3^15))
+> end do; 
+> 
+> m1 := r &^ e * m mod n;
+> 
+> s := m1 &^ d1 mod n;
+> 
+> s1 := s * r &^ (-1) mod n;
+> 
+> m2 = s1 &^ e mod n;
+> 
+> m2 - m;
+> 

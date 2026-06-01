@@ -1,0 +1,38 @@
+> #    03,         3.1.1 - RSA                  
+> #            . ., 3        -2.2
+> 
+> with(numtheory):
+> with(RandomTools): 
+>     
+> p1:= nextprime(Generate(integer(range = 3.. 3^10))); 
+> p2:= nextprime(Generate(integer(range = 3.. 3^10))); 
+>    
+> M := p1 * p2; 
+> P := phi(M);  
+>  
+> e := Generate(integer(range = 3^15.. P)):
+>    
+> while igcd(e,P) <> 1 do 
+> e := Generate(integer(range = 3^15.. P)): 
+> end do:  
+>  
+> e := e;
+> igcd(e, P);
+> d := e &^ (phi(P)-1) mod P;
+> m := nextprime(Generate(integer(range = 3^10..3^15))); 
+> 
+> m1 := m &^ e mod M;
+> m2 := m1 &^ d mod M;
+> 
+> 
+                             47969
+                             40699
+                           1952290331
+                           1952201664
+                           559753111
+                               1
+                           1061937703
+                             564881
+                           1438998175
+                             564881
+;

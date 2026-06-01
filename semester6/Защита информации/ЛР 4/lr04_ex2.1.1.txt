@@ -1,0 +1,43 @@
+> #    04,         2.1.1                  
+> #            . ., 3        -2.2
+> 
+> with(numtheory):
+> with(RandomTools):
+> p := nextprime(Generate(integer(range = 3.. 3^15)));
+> q := nextprime(Generate(integer(range = 3.. 3^15)));
+>     
+> while q = p do
+> 	q := nextprime(Generate(integer(range = 3.. 3^15)));
+> end do;
+> 
+> n := p*q;
+> P := phi(n);
+>     
+> e := nextprime(Generate(integer(range = 3.. 3^15)));
+> while igcd(e, P) <> 1 do
+> 	e := nextprime(Generate(integer(range = 3.. 3^15)))
+> end do;
+> 
+> d1 := e &^ (phi(P)-1) mod P;
+> # d1 := 'd1':
+> # t := msolve(e * d1 = 1, P): 
+> # assign(t); 
+> # d1 := d1;
+> 
+> m := nextprime(Generate(integer(range = 3.. n)));
+> 
+> s := m &^ d1 mod n;
+> 
+> m1 := s &^ e mod n;
+> 
+> 
+                            9550691
+                            11443967
+                        109297792631197
+                        109297771636540
+                            12787633
+                        102396070561157
+                         58467256088557
+                         6692344947945
+                         58467256088557
+;

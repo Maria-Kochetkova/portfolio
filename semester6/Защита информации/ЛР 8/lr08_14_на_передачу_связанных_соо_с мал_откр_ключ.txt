@@ -1,0 +1,26 @@
+> # Атака на передачу связанных сообщений 
+> # с малым открытым ключом
+> # Выполнила Кочеткова М.П.
+> with(RandomTools):
+> with(numtheory):
+> 
+> e := 3;
+> 
+> p := nextprime(Generate(integer(range = 1 .. 10^15))):
+> q := nextprime(Generate(integer(range = 1 .. 10^15))):
+> n := p * q:
+> 
+> m1 := Generate(integer(range = 1 .. 10^10)) mod n: # первое сообщение
+> 
+> a := Generate(integer(range = 1 .. 10^5));
+> b := Generate(integer(range = 1 .. 10^5));
+> m2 := a * m1 + b mod n:
+> 
+> # Шифртекст
+> c1 := m1 &^ e mod n;
+> c2 := (m2 &^ e) mod n;
+> 
+> M1 := (b*(c2+2*(a^e)*c1 - b^e))/(a *(c2 - (a^e)*c1 + 2*b^e)) mod n;
+> 
+> # Проверка
+> is(M1=m1);

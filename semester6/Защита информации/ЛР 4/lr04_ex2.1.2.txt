@@ -1,0 +1,43 @@
+> #   04,         2.1.2
+> #            . ., 3        -2.2
+> 
+> with(numtheory):
+> with(RandomTools):
+
+> hash:= (x) -> x mod 5;   
+> 
+> p := nextprime(Generate(integer(range = 3.. 3^15))); 
+> q := nextprime(Generate(integer(range = 3.. 3^15)));
+
+> n := p*q; 
+> P := phi(n);              
+> 
+> e := nextprime(Generate(integer(range = 10^3.. 10^7)));
+> igcd(e, P);  
+> 
+> 
+> d1 := e &^ (phi(P)-1) mod P;
+> 
+> m := nextprime(Generate(integer(range = 3.. n))); 
+> 
+> s := hash(m) &^ e mod n;  
+> 
+> m1 := s &^ d1 mod n;        
+> 
+> hash(m) - m1;             
+> 
+x -> `mod`(x, 5)
+                            9550691
+                            11443967
+                        109297792631197
+                        109297771636540
+                            8534297
+                               1
+                        102172980595673
+                         61434840154133
+                         27814121359624
+                               3
+                               0
+;
+> 
+;

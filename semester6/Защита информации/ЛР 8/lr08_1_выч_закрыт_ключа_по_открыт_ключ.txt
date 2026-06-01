@@ -1,0 +1,36 @@
+> # 1 Атака вычислением закрытого ключа по открытому ключу
+> # Выполнила Кочеткова М.П.
+> with(numtheory):
+> with(RandomTools):
+> 
+> # Неизвестное число p
+> p := nextprime(Generate(integer(range = 1 ..10^10))):
+> # Неизвестное число q
+> q := extprime(Generate(integer(range = 1 ..10^10))):
+> 
+> n := p*q; # Известно взломщику
+> phi_n := phi(n):
+> 
+> m := Generate(integer(range = 1 ..10^10)) mod(n):
+> e := nextprime(Generate(integer(range=3..phi_n))); # Известно взломщику
+> 
+> # Зашифрованный текст
+> m1 := m &^ e mod n; # Известно взломщику
+> 
+> # Разложение на множители взломщиком
+> s := ifactors(n);
+> q1 := s[2][1][1];
+> p1 := s[2][2][1];
+> 
+> ph := phi(p1)*phi(q1);
+>
+> # Восстановление закрытого ключа дешифр
+> d1 := 'd1': t := msolve(d1*e= 1, ph):
+> assign(t): d1 := d1; 
+> 
+> m2 := m1 &^ d1 mod n;
+> 
+> # Проверка
+> is(p = p1);
+> is(q = q1);
+> is(m = m2);

@@ -1,0 +1,44 @@
+> #    03,         3.4 -                                
+> #            . ., 3        -2.2
+> 
+> with(RandomTools):    
+> 
+> p := nextprime(Generate(integer(range = 10^2.. 10^10))):      
+> 	while p mod 4 <> 3 do          
+> 	p := nextprime(Generate(integer(range = 10^2.. 10^10))):      
+> 	end do:   
+> 
+> q := nextprime(Generate(integer(range = 10^2.. 10^10))):     
+> 	while q mod 4 <> 3 or q = p do          
+> 	q := nextprime(Generate(integer(range = 10^2.. 10^10))):      
+> 	end do:       
+> 
+> n := p*q; 
+> 
+> m := nextprime(Generate(integer(range = 3.. n)));
+> 
+> c := m^2 mod n;
+> 
+> a1 := c &^ ((p+1)/4) mod p; 
+> b1 := c &^ ((q+1)/4) mod q;
+> 
+> a2 := (p - c &^ ((p+1)/4)) mod p;
+> b2 := (q - c &^ ((q+1)/4)) mod q;
+> 
+> p1 := chrem([a1, b1],[p, q]);
+> p2 := chrem([a1, b2],[p, q]);
+> p3 := chrem([a2, b1],[p, q]);
+> p4 := chrem([a2, b2],[p, q]);
+> 
+                      5768364103140494441
+                      1799302827895858861
+                      5034262119464045022
+                           194441234
+                           3870107117
+                           387428225
+                           6043394982
+                      3969061275244635580
+                      1628740637655982000
+                      4139623465484512441
+                      1799302827895858861
+;

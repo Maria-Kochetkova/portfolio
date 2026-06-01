@@ -1,0 +1,44 @@
+> # ЛР04, Задание 2.1.4
+> # Кочеткова М.П., 3курс ИВТ-2.2
+> 
+> with(numtheory):
+> with(RandomTools):
+> 
+> p := nextprime(Generate(integer(range = 3.. 3^15)));
+> q := nextprime(Generate(integer(range = 3.. 3^15)));
+>     
+> while q = p do
+> 	q := nextprime(Generate(integer(range = 3.. 3^15)));
+> end do;
+> 
+> n := p*q;
+> P := phi(n);
+>     
+> e := nextprime(Generate(integer(range = 3.. 3^15)));
+> while igcd(e, P) <> 1 do
+> 	e := nextprime(Generate(integer(range = 3.. 3^15)))
+> end do;
+> 
+> d1 := e &^ (phi(P)-1) mod P;
+> 
+> s := nextprime(Generate(integer(range = 3.. 3^15)));
+> 
+> g := s &^ d1 mod n;
+> 
+> s1 := g &^ e mod n;
+> 
+> s1 - s;
+> 
+                            9550691
+                            11443967
+                        109297792631197
+                        109297771636540
+                            12787633
+                        102396070561157
+                            8533297
+                         85272385402034
+                            8533297
+                               0
+;
+> 
+;

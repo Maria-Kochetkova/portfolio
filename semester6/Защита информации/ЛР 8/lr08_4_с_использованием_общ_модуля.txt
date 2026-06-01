@@ -1,0 +1,64 @@
+> # Атака с использованием общего модуля
+> # Выполнила Кочеткова М.П.
+> with(numtheory):
+> with(RandomTools):
+> 
+> p:= nextprime(Generate(integer(range = 1 ..10^10))):
+> q:= nextprime(Generate(integer(range = 1 ..10^10))):
+> 
+> nA := p*q; 
+> nB := nA;
+> pn:= phi(nA);
+> 
+> m := Generate(integer(range = 1 ..10^10))mod nA:
+> 
+> eA:= nextprime(Generate(integer(range = 1..pn)));
+> eB:= nextprime(Generate(integer(range = 1..pn)));
+> 
+> c1 := m &^ eA mod nA; # А шифр
+> c2 := m &^ eB mod nB; # B шифр
+> 
+> # Решение диафантова уравнения
+> x:='x'; y:='y';
+> sol := isolve(eA * x + eB * y = 1): _Z1 := 0: sol:
+> x := rhs(op(1, sol));
+> y := rhs(op(2, sol));
+> 
+> eA * x + eB * y; # Проверка Евклидом
+>
+> m1 := c1 &^ abs(x) mod nA;
+> m2 := c2 &^ abs(y) mod nA;
+>
+> if x < 0 and y >= 0 then
+> 	im1 := m1 &^ (pn - 1) mod nA;
+> 	m_res := im1 * m2 mod nA;
+> else
+> 	im2 := m2 &^ (pn - 1) mod nA;
+> 	m_res := m1 * im2 mod nA;
+> end if;
+> 
+> # Проверка
+> is(m_res = m)
+> 
+> 
+> 
+                      4118687011661919287
+                      4118687011661919287
+                      4118687001523290456
+                      2380850501379073723
+                       774039844190234107
+                      1948202178142613242
+                      3197832454092026895
+                               x
+                               y
+                       612521851823520540
+                      -1884041201451715817
+                               1
+                      2914680441914304683
+                       646138247481081136
+                      3334926888823501431
+                           5735313977
+                              true
+;
+> 
+;

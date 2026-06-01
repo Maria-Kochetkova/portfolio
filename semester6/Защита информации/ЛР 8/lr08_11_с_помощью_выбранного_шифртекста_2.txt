@@ -1,0 +1,27 @@
+> # Атака с помощью выбранного шифртекста 2
+> # Выполнила Кочеткова М.П.
+> 
+> with(RandomTools):
+> with(numtheory):
+> 
+> e := nextprime(Generate(integer(range = 3 .. 10^10)));
+> 
+> p := nextprime(Generate(integer(range = 3 .. 10^15))):
+> q := nextprime(Generate(integer(range = 3 .. 10^15))):
+> n := p * q:
+> 
+> d1 := e &^ (phi(phi(n))-1) mod phi(n);
+> 
+> N := Generate(integer(range = 3 .. 10^15)):
+> 
+> x := Generate(integer(range = 3 .. 10^15));
+> y := x &^ e mod n;
+> M := y * N;
+> 
+> z := M &^ d1 mod n;
+> 
+> res1 := (x^(-1) *z) mod n;
+> res2 := N &^ d1 mod n;
+> 
+> # Проверка
+> is(res1=res2);
